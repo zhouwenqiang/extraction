@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.extraction.mapper.MaintenanceorderMapper" >
+  <resultMap id="BaseResultMap" type="com.example.extraction.entity.Maintenanceorder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="bdid" property="bdid" jdbcType="VARCHAR" />
+    <result column="companyname" property="companyname" jdbcType="VARCHAR" />
+    <result column="sqtime" property="sqtime" jdbcType="TIMESTAMP" />
+    <result column="sqbmid" property="sqbmid" jdbcType="INTEGER" />
+    <result column="sqbmname" property="sqbmname" jdbcType="VARCHAR" />
+    <result column="squserid" property="squserid" jdbcType="INTEGER" />
+    <result column="squsername" property="squsername" jdbcType="VARCHAR" />
+    <result column="cphmid" property="cphmid" jdbcType="INTEGER" />
+    <result column="cphmname" property="cphmname" jdbcType="VARCHAR" />
+    <result column="wxid" property="wxid" jdbcType="INTEGER" />
+    <result column="wxname" property="wxname" jdbcType="VARCHAR" />
+    <result column="jsyid" property="jsyid" jdbcType="INTEGER" />
+    <result column="jsyname" property="jsyname" jdbcType="VARCHAR" />
+    <result column="jsyphone" property="jsyphone" jdbcType="VARCHAR" />
+    <result column="scgls" property="scgls" jdbcType="INTEGER" />
+    <result column="mqgls" property="mqgls" jdbcType="INTEGER" />
+    <result column="xlcid" property="xlcid" jdbcType="INTEGER" />
+    <result column="xlcname" property="xlcname" jdbcType="VARCHAR" />
+    <result column="yjwxkssj" property="yjwxkssj" jdbcType="DATE" />
+    <result column="yjwxjssj" property="yjwxjssj" jdbcType="DATE" />
+    <result column="sjwxkssj" property="sjwxkssj" jdbcType="DATE" />
+    <result column="sjwxjssj" property="sjwxjssj" jdbcType="DATE" />
+    <result column="gzsm" property="gzsm" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="DATE" />
+  </resultMap>
+  <delete id="deleteName">
+    delete from maintenanceorderextract where companyname = #{corpname}
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from maintenanceorder
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.extraction.entity.Maintenanceorder" >
+    insert into maintenanceorder (id, bdid, companyname, 
+      sqtime, sqbmid, sqbmname, 
+      squserid, squsername, cphmid, 
+      cphmname, wxid, wxname, 
+      jsyid, jsyname, jsyphone, 
+      scgls, mqgls, xlcid, 
+      xlcname, yjwxkssj, yjwxjssj, 
+      sjwxkssj, sjwxjssj, gzsm, 
+      createtime)
+    values (#{id,jdbcType=INTEGER}, #{bdid,jdbcType=VARCHAR}, #{companyname,jdbcType=VARCHAR}, 
+      #{sqtime,jdbcType=TIMESTAMP}, #{sqbmid,jdbcType=INTEGER}, #{sqbmname,jdbcType=VARCHAR}, 
+      #{squserid,jdbcType=INTEGER}, #{squsername,jdbcType=VARCHAR}, #{cphmid,jdbcType=INTEGER}, 
+      #{cphmname,jdbcType=VARCHAR}, #{wxid,jdbcType=INTEGER}, #{wxname,jdbcType=VARCHAR}, 
+      #{jsyid,jdbcType=INTEGER}, #{jsyname,jdbcType=VARCHAR}, #{jsyphone,jdbcType=VARCHAR}, 
+      #{scgls,jdbcType=INTEGER}, #{mqgls,jdbcType=INTEGER}, #{xlcid,jdbcType=INTEGER}, 
+      #{xlcname,jdbcType=VARCHAR}, #{yjwxkssj,jdbcType=DATE}, #{yjwxjssj,jdbcType=DATE}, 
+      #{sjwxkssj,jdbcType=DATE}, #{sjwxjssj,jdbcType=DATE}, #{gzsm,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=DATE})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.extraction.entity.Maintenanceorder" >
+    update maintenanceorder
+    set bdid = #{bdid,jdbcType=VARCHAR},
+      companyname = #{companyname,jdbcType=VARCHAR},
+      sqtime = #{sqtime,jdbcType=TIMESTAMP},
+      sqbmid = #{sqbmid,jdbcType=INTEGER},
+      sqbmname = #{sqbmname,jdbcType=VARCHAR},
+      squserid = #{squserid,jdbcType=INTEGER},
+      squsername = #{squsername,jdbcType=VARCHAR},
+      cphmid = #{cphmid,jdbcType=INTEGER},
+      cphmname = #{cphmname,jdbcType=VARCHAR},
+      wxid = #{wxid,jdbcType=INTEGER},
+      wxname = #{wxname,jdbcType=VARCHAR},
+      jsyid = #{jsyid,jdbcType=INTEGER},
+      jsyname = #{jsyname,jdbcType=VARCHAR},
+      jsyphone = #{jsyphone,jdbcType=VARCHAR},
+      scgls = #{scgls,jdbcType=INTEGER},
+      mqgls = #{mqgls,jdbcType=INTEGER},
+      xlcid = #{xlcid,jdbcType=INTEGER},
+      xlcname = #{xlcname,jdbcType=VARCHAR},
+      yjwxkssj = #{yjwxkssj,jdbcType=DATE},
+      yjwxjssj = #{yjwxjssj,jdbcType=DATE},
+      sjwxkssj = #{sjwxkssj,jdbcType=DATE},
+      sjwxjssj = #{sjwxjssj,jdbcType=DATE},
+      gzsm = #{gzsm,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, bdid, companyname, sqtime, sqbmid, sqbmname, squserid, squsername, cphmid, 
+    cphmname, wxid, wxname, jsyid, jsyname, jsyphone, scgls, mqgls, xlcid, xlcname, yjwxkssj, 
+    yjwxjssj, sjwxkssj, sjwxjssj, gzsm, createtime
+    from maintenanceorder
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="list" resultType="com.example.extraction.entity.Maintenanceorder">
+      select id, bdid, companyname, sqtime, sqbmid, sqbmname, squserid, squsername, cphmid,
+    cphmname, wxid, wxname, jsyid, jsyname, jsyphone, scgls, mqgls, xlcid, xlcname, yjwxkssj,
+    yjwxjssj, sjwxkssj, sjwxjssj, gzsm, createtime
+    from maintenanceorder
+  </select>
+  <select id="listcg" resultType="com.example.extraction.entity.Maintenanceorder">
+      select  tyw.id,tyw.bdid ,tyw.createtime sqtime, tyw.sqbm sqbmid,#{corpname} companyname,
+  oob.org_name sqbmname,tyw.creatoruid squserid,oub.user_truename squsername,tyw.cphm cphmid,
+  tci.cphm cphmname,tyw.wxlx wxid,tei.ei_caption wxname,tyw.jsy jsyid,oub2.user_truename jsyname,
+  tyw.jsysj jsyphone,tyw.scgls,tyw.mqgls mqgls,tyw.xlc xlcid,tc.mc xlcname,tyw.yjwxkssj,
+  tyw.yjwxjssj,tyw.sjwxkssj,tyw.sjwxjssj,tyw.gzsm
+  from  tprj_ycsq_weixiu  tyw
+  LEFT JOIN org_organization_base oob on(tyw.sqbm=oob.id)
+  LEFT JOIN org_user_base oub on(tyw.creatoruid=oub.id)
+  LEFT JOIN tprj_cheliang_info tci on(tyw.cphm=tci.id)
+  LEFT JOIN tsys_enum_items tei on(tyw.wxlx=tei.ei_item_id)
+  LEFT JOIN org_user_base oub2 on(tyw.jsy=oub2.id)
+  LEFT JOIN tprj_changshang tc on(tyw.xlc=tc.id)
+  where   tyw.sqbm !=0 and tyw.sqbm is not null  and tyw.bdid is  not null and tyw.bdid != ''
+<if test="lastupdatetime != null and lastupdatetime != ''">and DATE_FORMAT(tyw.lastupdatetime,'%Y-%m-%d') = #{lastupdatetime} </if>
+  </select>
+
+  <!-- 添加,插入记录   -->
+  <insert id="insertBigData" useGeneratedKeys="true" parameterType="map" keyProperty="id">
+    <selectKey resultType="long" keyProperty="id" order="AFTER">
+      SELECT
+      LAST_INSERT_ID()
+    </selectKey>
+    <if test="list.size() > 0">
+      insert into maintenanceorderextract (bdid,companyname,sqtime,sqbmid,sqbmname,squserid,squsername,cphmid,cphmname,wxid,wxname,jsyid,
+      jsyname,jsyphone,scgls,mqgls,xlcid,xlcname,yjwxkssj,yjwxjssj,sjwxkssj,sjwxjssj,gzsm,createtime)
+      values
+      <foreach collection="list" item="item" index="index" separator="," >
+        (#{item.bdid},#{item.companyname},#{item.sqtime},#{item.sqbmid},#{item.sqbmname},#{item.squserid},#{item.squsername},#{item.cphmid},#{item.cphmname},#{item.wxid},#{item.wxname},#{item.jsyid},#{item.jsyname},
+        #{item.jsyphone},#{item.scgls},#{item.mqgls},#{item.xlcid},#{item.xlcname},#{item.yjwxkssj},#{item.yjwxjssj},#{item.sjwxkssj},#{item.sjwxjssj},#{item.gzsm},#{item.createtime})
+      </foreach>
+    </if>
+  </insert>
+
+  <insert id="updatecgBigData"  parameterType="java.util.List">
+    <if test="list.size() > 0">
+      update tprj_ycsq_weixiu set extract=1 where
+      <foreach collection="list" separator="or" item="i" index="index" >
+        id=#{i.id}
+      </foreach>
+    </if>
+  </insert>
+</mapper>

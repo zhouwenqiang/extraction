@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.extraction.mapper.VehiclefileMapper" >
+  <resultMap id="BaseResultMap" type="com.example.extraction.entity.Vehiclefile" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cph" property="cph" jdbcType="VARCHAR" />
+    <result column="ssfgs" property="ssfgs" jdbcType="VARCHAR" />
+    <result column="sybm" property="sybm" jdbcType="VARCHAR" />
+    <result column="clxz" property="clxz" jdbcType="VARCHAR" />
+    <result column="cllx" property="cllx" jdbcType="VARCHAR" />
+    <result column="cx" property="cx" jdbcType="VARCHAR" />
+    <result column="grtime" property="grtime" jdbcType="DATE" />
+    <result column="pl" property="pl" jdbcType="VARCHAR" />
+    <result column="llbglhy" property="llbglhy" jdbcType="VARCHAR" />
+    <result column="hdbglyh" property="hdbglyh" jdbcType="VARCHAR" />
+    <result column="thwz" property="thwz" jdbcType="VARCHAR" />
+    <result column="ys" property="ys" jdbcType="VARCHAR" />
+    <result column="zrs" property="zrs" jdbcType="VARCHAR" />
+    <result column="simkh" property="simkh" jdbcType="VARCHAR" />
+    <result column="ykfkh" property="ykfkh" jdbcType="VARCHAR" />
+    <result column="bdjsy" property="bdjsy" jdbcType="VARCHAR" />
+    <result column="clgdzcbm" property="clgdzcbm" jdbcType="VARCHAR" />
+    <result column="etchm" property="etchm" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vehiclefile
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteName">
+    delete from vehiclefile where ssfgs = #{corpname}
+  </delete>
+  <insert id="insert" parameterType="com.example.extraction.entity.Vehiclefile" >
+    insert into vehiclefile (id, cph, ssfgs, 
+      sybm, clxz, cllx, cx, 
+      grtime, pl, llbglhy, hdbglyh, 
+      thwz, ys, zrs, simkh, 
+      ykfkh, bdjsy, clgdzcbm, 
+      etchm, createtime)
+    values (#{id,jdbcType=INTEGER}, #{cph,jdbcType=VARCHAR}, #{ssfgs,jdbcType=VARCHAR}, 
+      #{sybm,jdbcType=VARCHAR}, #{clxz,jdbcType=VARCHAR}, #{cllx,jdbcType=VARCHAR}, #{cx,jdbcType=VARCHAR}, 
+      #{grtime,jdbcType=DATE}, #{pl,jdbcType=VARCHAR}, #{llbglhy,jdbcType=VARCHAR}, #{hdbglyh,jdbcType=VARCHAR}, 
+      #{thwz,jdbcType=VARCHAR}, #{ys,jdbcType=VARCHAR}, #{zrs,jdbcType=VARCHAR}, #{simkh,jdbcType=VARCHAR}, 
+      #{ykfkh,jdbcType=VARCHAR}, #{bdjsy,jdbcType=VARCHAR}, #{clgdzcbm,jdbcType=VARCHAR}, 
+      #{etchm,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.extraction.entity.Vehiclefile" >
+    update vehiclefile
+    set cph = #{cph,jdbcType=VARCHAR},
+      ssfgs = #{ssfgs,jdbcType=VARCHAR},
+      sybm = #{sybm,jdbcType=VARCHAR},
+      clxz = #{clxz,jdbcType=VARCHAR},
+      cllx = #{cllx,jdbcType=VARCHAR},
+      cx = #{cx,jdbcType=VARCHAR},
+      grtime = #{grtime,jdbcType=DATE},
+      pl = #{pl,jdbcType=VARCHAR},
+      llbglhy = #{llbglhy,jdbcType=VARCHAR},
+      hdbglyh = #{hdbglyh,jdbcType=VARCHAR},
+      thwz = #{thwz,jdbcType=VARCHAR},
+      ys = #{ys,jdbcType=VARCHAR},
+      zrs = #{zrs,jdbcType=VARCHAR},
+      simkh = #{simkh,jdbcType=VARCHAR},
+      ykfkh = #{ykfkh,jdbcType=VARCHAR},
+      bdjsy = #{bdjsy,jdbcType=VARCHAR},
+      clgdzcbm = #{clgdzcbm,jdbcType=VARCHAR},
+      etchm = #{etchm,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, cph, ssfgs, sybm, clxz, cllx, cx, grtime, pl, llbglhy, hdbglyh, thwz, 
+    ys, zrs, simkh, ykfkh, bdjsy, clgdzcbm, etchm, createtime
+    from vehiclefile
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, cph, ssfgs, sybm, clxz, cllx, cx, grtime, pl, llbglhy, hdbglyh, thwz, 
+    ys, zrs, simkh, ykfkh, bdjsy, clgdzcbm, etchm, createtime
+    from vehiclefile
+  </select>
+  <select id="selectVehiclefileCount" resultType="int" >
+    select count(*)  from vehiclefile
+  </select>
+  <select id="selectTprjCheliangInfoCount" resultType="int" >
+    select count(*)  from tprj_cheliang_info
+  </select>
+
+  <select id="list" resultType="com.example.extraction.entity.Vehiclefile">
+     select id, cph, ssfgs, sybm, clxz, cllx, cx, grtime, pl, llbglhy, hdbglyh, thwz,
+    ys, zrs, simkh, ykfkh, bdjsy, clgdzcbm, etchm, createtime
+    from vehiclefile
+  </select>
+  <select id="listcg" resultType="com.example.extraction.entity.Vehiclefile">
+     select tci.id,tci.cphm cph,#{corpname} ssfgs,oob.org_name sybm,tei.ei_caption clxz,teix.ei_caption cllx,teicx.ei_caption cx,
+    tci.mrrq grtime,tci.pl pl,tci.llbzyh llbglhy,tci.hdbglyh hdbglyh,tci.tfwz thwz,teiys.ei_caption ys,tci.zrs zrs,tci.simkh simkh,
+    tyf.fk_no ykfkh,oub.user_truename bdjsy,tci.cjh clgdzcbm,tci.etchm etchm
+    from tprj_cheliang_info tci
+    LEFT JOIN org_organization_base oob on(tci.sybm=oob.id)
+    LEFT JOIN tsys_enum_items tei ON(tci.clxz=tei.ei_item_id)
+    LEFT JOIN tsys_enum_items teix ON(tci.cllx=teix.ei_item_id)
+    LEFT JOIN tsys_enum_items teicx ON(tci.cx=teicx.ei_item_id)
+    LEFT JOIN tsys_enum_items teiys ON(tci.ys=teiys.ei_item_id)
+    LEFT JOIN tprj_youka_fenka tyf ON(tci.fkid=tyf.id)
+    LEFT JOIN org_user_base oub ON(tci.jsyid=oub.id)
+    where tci.delstate = 0 and  sybm is not null
+  </select>
+
+  <!-- 添加,插入记录   -->
+  <insert id="insertBigData" useGeneratedKeys="true" parameterType="java.util.List" keyProperty="id">
+    <selectKey resultType="long" keyProperty="id" order="AFTER">
+      SELECT
+      LAST_INSERT_ID()
+    </selectKey>
+      <if test="list.size() > 0">
+      insert into vehiclefile (cph,ssfgs,sybm,clxz,cllx,cx,grtime,pl,llbglhy,hdbglyh,thwz,ys,zrs,simkh,ykfkh,bdjsy,clgdzcbm,etchm,createtime)
+      values
+      <foreach collection="list" item="item" index="index" separator="," >
+        (#{item.cph},#{item.ssfgs},#{item.sybm},#{item.clxz},#{item.cllx},#{item.cx},#{item.grtime},#{item.pl},#{item.llbglhy},#{item.hdbglyh},#{item.thwz},#{item.ys},#{item.zrs},#{item.simkh},#{item.ykfkh},#{item.bdjsy},#{item.clgdzcbm},#{item.etchm},#{item.createtime})
+      </foreach>
+    </if>
+  </insert>
+
+  <insert id="updatecgBigData"  parameterType="java.util.List">
+    <if test="list.size() > 0">
+      update tprj_cheliang_info set extract=1 where
+      <foreach collection="list" separator="or" item="i" index="index" >
+        id=#{i.id}
+      </foreach>
+    </if>
+  </insert>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.extraction.mapper.DtvActionlogMapper" >
+  <resultMap id="BaseResultMap" type="com.example.extraction.entity.DtvActionlog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="corpname" property="corpname" jdbcType="VARCHAR" />
+    <result column="extractobject" property="extractobject" jdbcType="VARCHAR" />
+    <result column="extractnumber" property="extractnumber" jdbcType="INTEGER" />
+    <result column="extracttime" property="extracttime" jdbcType="DOUBLE" />
+    <result column="insertnumber" property="insertnumber" jdbcType="INTEGER" />
+    <result column="inserttime" property="inserttime" jdbcType="DOUBLE" />
+    <result column="updateobject" property="updateobject" jdbcType="VARCHAR" />
+    <result column="updatenumber" property="updatenumber" jdbcType="INTEGER" />
+    <result column="updatetime" property="updatetime" jdbcType="DOUBLE" />
+    <result column="deletenumber" property="deletenumber" jdbcType="INTEGER" />
+    <result column="deletetime" property="deletetime" jdbcType="DOUBLE" />
+    <result column="deletedate" property="deletedate" jdbcType="DATE" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dtv_actionlog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.extraction.entity.DtvActionlog" >
+    insert into dtv_actionlog (corpname, extractobject,
+      extractnumber, extracttime, insertnumber, updateobject,updatenumber,updatetime,
+      inserttime, deletenumber, deletetime, 
+      deletedate, createtime, state, 
+      remark)
+    values ( #{corpname,jdbcType=VARCHAR}, #{extractobject,jdbcType=VARCHAR},
+      #{extractnumber,jdbcType=INTEGER}, #{extracttime,jdbcType=DOUBLE}, #{insertnumber,jdbcType=INTEGER},
+      #{updateobject,jdbcType=VARCHAR}, #{updatenumber,jdbcType=INTEGER}, #{updatetime,jdbcType=DOUBLE},
+      #{inserttime,jdbcType=DOUBLE}, #{deletenumber,jdbcType=INTEGER}, #{deletetime,jdbcType=DOUBLE},
+      #{deletedate,jdbcType=DATE}, #{createtime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, 
+      #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.extraction.entity.DtvActionlog" >
+    update dtv_actionlog
+    set corpname = #{corpname,jdbcType=VARCHAR},
+      extractobject = #{extractobject,jdbcType=VARCHAR},
+      extractnumber = #{extractnumber,jdbcType=INTEGER},
+      extracttime = #{extracttime,jdbcType=DOUBLE},
+      insertnumber = #{insertnumber,jdbcType=INTEGER},
+      inserttime = #{inserttime,jdbcType=DOUBLE},
+      deletenumber = #{deletenumber,jdbcType=INTEGER},
+      deletetime = #{deletetime,jdbcType=DOUBLE},
+      deletedate = #{deletedate,jdbcType=DATE},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, corpname, extractobject, extractnumber, extracttime, insertnumber, inserttime,updateobject,updatenumber,updatetime,
+    deletenumber, deletetime, deletedate, createtime, state, remark
+    from dtv_actionlog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, corpname, extractobject, extractnumber, extracttime, insertnumber, inserttime, updateobject,updatenumber,updatetime,
+    deletenumber, deletetime, deletedate, createtime, state, remark
+    from dtv_actionlog
+  </select>
+  <select id="list" resultType="com.example.extraction.entity.DtvActionlog">
+      select id, corpname, extractobject, extractnumber, extracttime, insertnumber, inserttime,updateobject,updatenumber,updatetime,
+    deletenumber, deletetime, deletedate, createtime, state, remark
+    from dtv_actionlog
+    </select>
+</mapper>

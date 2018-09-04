@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.extraction.mapper.DriverfileMapper" >
+  <resultMap id="BaseResultMap" type="com.example.extraction.entity.Driverfile" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="jsy" property="jsy" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="ssfgs" property="ssfgs" jdbcType="VARCHAR" />
+    <result column="ssbm" property="ssbm" jdbcType="VARCHAR" />
+    <result column="jszh" property="jszh" jdbcType="VARCHAR" />
+    <result column="jszjb" property="jszjb" jdbcType="VARCHAR" />
+    <result column="cclztime" property="cclztime" jdbcType="DATE" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="sjdh" property="sjdh" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteName">
+    delete from driverfile where ssfgs = #{corpname}
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from driverfile
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.extraction.entity.Driverfile" >
+    insert into driverfile (id, jsy, age, 
+      ssfgs, ssbm, jszh, 
+      jszjb, cclztime, sex, 
+      phone, sjdh, createtime
+      )
+    values (#{id,jdbcType=INTEGER}, #{jsy,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, 
+      #{ssfgs,jdbcType=VARCHAR}, #{ssbm,jdbcType=VARCHAR}, #{jszh,jdbcType=VARCHAR}, 
+      #{jszjb,jdbcType=VARCHAR}, #{cclztime,jdbcType=DATE}, #{sex,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{sjdh,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.extraction.entity.Driverfile" >
+    update driverfile
+    set jsy = #{jsy,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      ssfgs = #{ssfgs,jdbcType=VARCHAR},
+      ssbm = #{ssbm,jdbcType=VARCHAR},
+      jszh = #{jszh,jdbcType=VARCHAR},
+      jszjb = #{jszjb,jdbcType=VARCHAR},
+      cclztime = #{cclztime,jdbcType=DATE},
+      sex = #{sex,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      sjdh = #{sjdh,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, jsy, age, ssfgs, ssbm, jszh, jszjb, cclztime, sex, phone, sjdh, createtime
+    from driverfile
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="list" resultMap="BaseResultMap" >
+    select id, jsy, age, ssfgs, ssbm, jszh, jszjb, cclztime, sex, phone, sjdh, createtime
+    from driverfile
+  </select>
+  <select id="listcg" resultType="com.example.extraction.entity.Driverfile">
+    select tji.userid id,oub.user_truename jsy,gongling age,#{corpname} ssfgs,oob.org_name ssbm,jsz_no jszh,lic_class jszjb,license_time cclztime,
+  oousex.user_ext_value sex,pho.user_ext_value as phone,phost.user_ext_value sjdh
+  from tprj_jiashiyuan_info tji
+  INNER JOIN org_user_base oub on(tji.userid=oub.id and oub.user_status=1 and oub.user_truename != 'GPS平台')
+  LEFT JOIN org_organization_user oou on(tji.userid=oou.user_id)
+  LEFT JOIN org_organization_base oob on(oou.org_id=oob.id)
+  LEFT JOIN org_user_ext oousex on(tji.userid=oousex.user_id AND oousex.user_ext_name='extsex')
+  LEFT JOIN org_user_ext pho on(tji.userid=pho.user_id AND pho.user_ext_name='mobile')
+  LEFT JOIN org_user_ext phost on(tji.userid=phost.user_id AND phost.user_ext_name='mobile_short')
+  where oob.org_name is not null
+  </select>
+
+  <!-- 添加,插入记录   -->
+  <insert id="insertBigData" useGeneratedKeys="true" parameterType="map" keyProperty="id">
+
+    <selectKey resultType="long" keyProperty="id" order="AFTER">
+      SELECT
+      LAST_INSERT_ID()
+    </selectKey>
+    <if test="list.size() > 0">
+      insert into driverfile (jsy,age,ssfgs,ssbm,jszh,jszjb,cclztime,sex,phone,sjdh,createtime)
+      values
+      <foreach collection="list" item="item" index="index" separator="," >
+        (#{item.jsy},#{item.age},#{item.ssfgs},#{item.ssbm},#{item.jszh},#{item.jszjb},#{item.cclztime},#{item.sex},#{item.phone},#{item.sjdh},#{item.createtime})
+      </foreach>
+    </if>
+  </insert>
+  <insert id="updatecgBigData"  parameterType="java.util.List">
+    <if test="list.size() > 0">
+      update tprj_jiashiyuan_info set extract=1 where
+      <foreach collection="list" separator="or" item="i" index="index" >
+        userid=#{i.id}
+      </foreach>
+    </if>
+  </insert>
+</mapper>

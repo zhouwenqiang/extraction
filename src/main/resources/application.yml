@@ -1,0 +1,19 @@
+server:
+  session:
+    timeout: 1800
+  port: 8082
+spring:
+  profiles:
+    active: pro
+  devtools:
+    restart:
+      enabled: true
+  http:
+    multipart:
+      max-request-size: 30Mb
+      max-file-size: 30Mb
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mybatis/**/*Mapper.xml
+  type-aliases-package: com.example.**.entity

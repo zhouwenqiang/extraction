@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.extraction.mapper.TruckingorderMapper" >
+  <resultMap id="BaseResultMap" type="com.example.extraction.entity.Truckingorder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fromid" property="fromid" jdbcType="VARCHAR" />
+    <result column="sqtime" property="sqtime" jdbcType="TIMESTAMP" />
+    <result column="ssfgs" property="ssfgs" jdbcType="VARCHAR" />
+    <result column="sqbm" property="sqbm" jdbcType="VARCHAR" />
+    <result column="cclx" property="cclx" jdbcType="VARCHAR" />
+    <result column="sfhb" property="sfhb" jdbcType="VARCHAR" />
+    <result column="qstime" property="qstime" jdbcType="TIMESTAMP" />
+    <result column="jstime" property="jstime" jdbcType="TIMESTAMP" />
+    <result column="cfdd" property="cfdd" jdbcType="VARCHAR" />
+    <result column="mddd" property="mddd" jdbcType="VARCHAR" />
+    <result column="scfzr" property="scfzr" jdbcType="VARCHAR" />
+    <result column="scfzrphone" property="scfzrphone" jdbcType="VARCHAR" />
+    <result column="qtscry" property="qtscry" jdbcType="VARCHAR" />
+    <result column="pqcl" property="pqcl" jdbcType="VARCHAR" />
+    <result column="cx" property="cx" jdbcType="VARCHAR" />
+    <result column="pqjsy" property="pqjsy" jdbcType="VARCHAR" />
+    <result column="jsyphone" property="jsyphone" jdbcType="VARCHAR" />
+    <result column="ccgls" property="ccgls" jdbcType="VARCHAR" />
+    <result column="hcgls" property="hcgls" jdbcType="VARCHAR" />
+    <result column="bcgls" property="bcgls" jdbcType="VARCHAR" />
+    <result column="bchyl" property="bchyl" jdbcType="VARCHAR" />
+    <result column="cs" property="cs" jdbcType="VARCHAR" />
+    <result column="pljs" property="pljs" jdbcType="VARCHAR" />
+    <result column="jzw" property="jzw" jdbcType="VARCHAR" />
+    <result column="jjs" property="jjs" jdbcType="VARCHAR" />
+    <result column="jsc" property="jsc" jdbcType="VARCHAR" />
+    <result column="jsypj" property="jsypj" jdbcType="VARCHAR" />
+    <result column="timebegin" property="timebegin" jdbcType="TIMESTAMP" />
+    <result column="timeend" property="timeend" jdbcType="TIMESTAMP" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="sqr" property="sqr" jdbcType="LONGVARCHAR" />
+    <result column="sqsy" property="sqsy" jdbcType="LONGVARCHAR" />
+    <result column="spr" property="spr" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteName">
+    delete from truckingorderextract where ssfgs = #{corpname}
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from truckingorder
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.extraction.entity.Truckingorder" >
+    insert into truckingorder (id, fromid, sqtime,
+      ssfgs, sqbm, cclx, 
+      sfhb, qstime, jstime, 
+      cfdd, mddd, scfzr, 
+      scfzrphone, qtscry, pqcl, 
+      cx, pqjsy, jsyphone, 
+      ccgls, hcgls, bcgls, 
+      bchyl, cs, pljs, jzw, 
+      jjs, jsc, jsypj, timebegin, 
+      timeend, createtime, sqr, 
+      sqsy, spr)
+    values (#{id,jdbcType=INTEGER}, #{fromid,jdbcType=VARCHAR}, #{sqtime,jdbcType=TIMESTAMP}, 
+      #{ssfgs,jdbcType=VARCHAR}, #{sqbm,jdbcType=VARCHAR}, #{cclx,jdbcType=VARCHAR}, 
+      #{sfhb,jdbcType=VARCHAR}, #{qstime,jdbcType=TIMESTAMP}, #{jstime,jdbcType=TIMESTAMP}, 
+      #{cfdd,jdbcType=VARCHAR}, #{mddd,jdbcType=VARCHAR}, #{scfzr,jdbcType=VARCHAR}, 
+      #{scfzrphone,jdbcType=VARCHAR}, #{qtscry,jdbcType=VARCHAR}, #{pqcl,jdbcType=VARCHAR}, 
+      #{cx,jdbcType=VARCHAR}, #{pqjsy,jdbcType=VARCHAR}, #{jsyphone,jdbcType=VARCHAR}, 
+      #{ccgls,jdbcType=VARCHAR}, #{hcgls,jdbcType=VARCHAR}, #{bcgls,jdbcType=VARCHAR}, 
+      #{bchyl,jdbcType=VARCHAR}, #{cs,jdbcType=VARCHAR}, #{pljs,jdbcType=VARCHAR}, #{jzw,jdbcType=VARCHAR}, 
+      #{jjs,jdbcType=VARCHAR}, #{jsc,jdbcType=VARCHAR}, #{jsypj,jdbcType=VARCHAR}, #{timebegin,jdbcType=TIMESTAMP}, 
+      #{timeend,jdbcType=TIMESTAMP}, #{createtime,jdbcType=VARCHAR}, #{sqr,jdbcType=LONGVARCHAR}, 
+      #{sqsy,jdbcType=LONGVARCHAR}, #{spr,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.extraction.entity.Truckingorder" >
+    update truckingorder
+    set fromid = #{fromid,jdbcType=VARCHAR},
+      sqtime = #{sqtime,jdbcType=TIMESTAMP},
+      ssfgs = #{ssfgs,jdbcType=VARCHAR},
+      sqbm = #{sqbm,jdbcType=VARCHAR},
+      cclx = #{cclx,jdbcType=VARCHAR},
+      sfhb = #{sfhb,jdbcType=VARCHAR},
+      qstime = #{qstime,jdbcType=TIMESTAMP},
+      jstime = #{jstime,jdbcType=TIMESTAMP},
+      cfdd = #{cfdd,jdbcType=VARCHAR},
+      mddd = #{mddd,jdbcType=VARCHAR},
+      scfzr = #{scfzr,jdbcType=VARCHAR},
+      scfzrphone = #{scfzrphone,jdbcType=VARCHAR},
+      qtscry = #{qtscry,jdbcType=VARCHAR},
+      pqcl = #{pqcl,jdbcType=VARCHAR},
+      cx = #{cx,jdbcType=VARCHAR},
+      pqjsy = #{pqjsy,jdbcType=VARCHAR},
+      jsyphone = #{jsyphone,jdbcType=VARCHAR},
+      ccgls = #{ccgls,jdbcType=VARCHAR},
+      hcgls = #{hcgls,jdbcType=VARCHAR},
+      bcgls = #{bcgls,jdbcType=VARCHAR},
+      bchyl = #{bchyl,jdbcType=VARCHAR},
+      cs = #{cs,jdbcType=VARCHAR},
+      pljs = #{pljs,jdbcType=VARCHAR},
+      jzw = #{jzw,jdbcType=VARCHAR},
+      jjs = #{jjs,jdbcType=VARCHAR},
+      jsc = #{jsc,jdbcType=VARCHAR},
+      jsypj = #{jsypj,jdbcType=VARCHAR},
+      timebegin = #{timebegin,jdbcType=TIMESTAMP},
+      timeend = #{timeend,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      sqr = #{sqr,jdbcType=LONGVARCHAR},
+      sqsy = #{sqsy,jdbcType=LONGVARCHAR},
+      spr = #{spr,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, fromid, sqtime, ssfgs, sqbm, cclx, sfhb, qstime, jstime, cfdd, mddd, scfzr, 
+    scfzrphone, qtscry, pqcl, cx, pqjsy, jsyphone, ccgls, hcgls, bcgls, bchyl, cs, pljs, 
+    jzw, jjs, jsc, jsypj, timebegin, timeend, createtime, sqr, sqsy, spr
+    from truckingorder
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectTruckingorderCount" resultType="int" >
+    select count(*)  from truckingorder
+  </select>
+  <select id="selectTprjYcsqGongcheCount" resultType="int" >
+    select count(*)  from tprj_ycsq_gongche
+  </select>
+
+  <select id="list" resultType="com.example.extraction.entity.Truckingorder">
+    select id, fromid, sqtime, ssfgs, sqbm, cclx, sfhb, qstime, jstime, cfdd, mddd, scfzr,
+    scfzrphone, qtscry, pqcl, cx, pqjsy, jsyphone, ccgls, hcgls, bcgls, bchyl, cs, pljs,
+    jzw, jjs, jsc, jsypj, timebegin, timeend, createtime, sqr, sqsy, spr
+    from truckingorder
+  </select>
+
+  <select id="listcg" resultType="com.example.extraction.entity.Truckingorder">
+    select tyg.id,tyg.bdid fromid,tyg.createtime sqtime,#{corpname} ssfgs,oob.org_name sqbm,oub.user_truename sqr,
+  tei.ei_caption cclx,tyg.sfhb sfhb,tyg.sqsy sqsy,tyg.qssj qstime,tyg.jssj jstime,tyg.cfdd cfdd,
+  tyg.mddd mddd,tyg.scfzr scfzr,tyg.scfzrsjh scfzrphone,tyg.scry qtscry,group_concat(oubsqr.user_truename) spr,
+  tci.cphm pqcl,teicx.ei_caption cx,oubpqjsy.user_truename pqjsy,tyg.jsysjh jsyphone,tyg.beginlc ccgls,tyg.endlc hcgls,
+  tyg.dclc bcgls,tyg.dcyh bchyl,tyg.jichaosu cs,null pljs,tyg.jizhuanwan jzw,tyg.jijiasu jjs,
+  tyg.jishache jsc,tyg.pinglunStatus jsypj ,ae.timeBegin timebegin,ae.timeEnd timeend
+  from tprj_ycsq_gongche tyg
+  LEFT JOIN org_organization_base oob ON(tyg.sqbm=oob.id)
+  LEFT JOIN org_user_base oub ON(tyg.creatoruid=oub.id)
+  LEFT JOIN tsys_enum_items tei ON(tyg.cclx=tei.ei_item_id)
+  LEFT JOIN tsys_wf_log twl ON(tyg.id=twl.zbid and twl.lastcommit=1)
+  LEFT JOIN org_user_base oubsqr on(twl.runeruid=oubsqr.id)
+  LEFT JOIN tprj_cheliang_info tci ON(tyg.cphm=tci.id)
+  LEFT JOIN tsys_enum_items teicx ON(tyg.cx=teicx.ei_item_id)
+  LEFT JOIN org_user_base oubpqjsy ON(tyg.jsy=oubpqjsy.id)
+  LEFT JOIN app_event ae ON (tyg.bdid=ae.gcid)
+    where tyg.bdid is not null and tyg.bdid != '' and oob.org_name is not null and tyg.endtime is not null
+    <if test="lastupdatetime != null and lastupdatetime != ''"> and DATE_FORMAT(tyg.lastupdatetime,'%Y-%m-%d') = #{lastupdatetime} </if>
+     GROUP BY tyg.id;
+  </select>
+
+  <!-- 添加,插入记录  truckingorderextract -->
+  <insert id="insertBigData" useGeneratedKeys="true" parameterType="java.util.List" keyProperty="id">
+    <selectKey resultType="long" keyProperty="id" order="AFTER">
+      SELECT
+      LAST_INSERT_ID()
+    </selectKey>
+    <if test="list.size() > 0">
+      insert into truckingorderextract(fromid,sqtime,ssfgs,sqbm,sqr,cclx,sfhb,sqsy,qstime,jstime,cfdd,mddd,
+      scfzr,scfzrphone,qtscry,spr,pqcl,cx,pqjsy,jsyphone,ccgls,hcgls,bcgls,bchyl,cs,pljs,jzw,jjs,jsc,jsypj,timebegin,timeend,createtime)
+      values
+      <foreach collection="list" item="item" index="index" separator="," >
+        (#{item.fromid},#{item.sqtime},#{item.ssfgs},#{item.sqbm},#{item.sqr},#{item.cclx},#{item.sfhb},#{item.sqsy},#{item.qstime},#{item.jstime},#{item.cfdd},#{item.mddd},#{item.scfzr},#{item.scfzrphone},#{item.qtscry},#{item.spr},#{item.pqcl},#{item.cx},#{item.pqjsy,jdbcType=VARCHAR},#{item.jsyphone},#{item.ccgls},#{item.hcgls},#{item.bcgls},#{item.bchyl},#{item.cs},#{item.pljs},#{item.jzw},#{item.jjs},#{item.jsc},#{item.jsypj},#{item.timebegin},#{item.timeend},#{item.createtime})
+      </foreach>
+    </if>
+  </insert>
+
+  <insert id="updatecgBigData"  parameterType="java.util.List">
+    <if test="list.size() > 0">
+      update tprj_ycsq_gongche set extract=1 where
+      <foreach collection="list" separator="or" item="i" index="index" >
+        id=#{i.id}
+      </foreach>
+    </if>
+  </insert>
+</mapper>
